@@ -1,6 +1,2 @@
-handsOnLab_ticketManager.js
-lib.js
-test.js
-test2.js
-test3_imports.js
-test4.js
+tests
+node_modules
