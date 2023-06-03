@@ -28,7 +28,6 @@ class ProductManager {
         let flag = false;
         this.products.forEach(element => {
             if (element.code === code) {
-                console.log('el codigo ya existe por favor ingresa otro ');
                 flag = true
             }
         })
@@ -43,12 +42,33 @@ class ProductManager {
                 "stock": stock
             }
             this.products.push(newProduct);
-            console.log(this.products);
+            console.log("Se ha agregado el producto: " + newProduct.title + ", ID: " + newProduct.id);
+            return newProduct
         }
+        return 'El codigo del producto ingresado ya existe, por favor ingresa otro ';
+
     }
+    getProducts = () => {
+        return this.products;
+    }
+    getProductByID = (id) => {
+        return new Promise ((resolve, reject) => {
+            const product = this.products.find(element => element.id === id)
+            if (product) {
+                return resolve(product)
+            }
+            reject('Error: Not found')
+        })
+    }
+
+
 }
 
 const productManager = new ProductManager();
-productManager.addProduct('jabon', 'jabon de glicerina', 450, null, "JG1", 2000);
-productManager.addProduct('jabon2', 'jabon de glicerina', 450, null, "JG1", 2000);
+productManager.addProduct('jabon', 'jabon de glicerina', 450, null, "JG1", 400);
+productManager.addProduct('crema', 'crema para manos', 500, null, "CM1", 1300);
+productManager.addProduct('cepillo de dientes', 'cuidado bucal', 250, null, "CM1", 100); //codigo repetido
 
+productManager.getProductByID(6)
+    .then((result => console.log("Se ha encontrado un producto con el id " + result.id + ": ",result)))
+    .catch((e) => console.log(e))
