@@ -52,13 +52,13 @@ class ProductManager {
         return this.products;
     }
     getProductByID = (id) => {
-        return new Promise ((resolve, reject) => {
-            const product = this.products.find(element => element.id === id)
-            if (product) {
-                return resolve(product)
-            }
-            reject('Error: Not found')
-        })
+        const product = this.products.find(element => element.id === id)
+        if (product) {
+            console.log('Se ha encontrado un producto con ID = ', id);
+            return product
+        }
+
+        return ('Error: Not found')
     }
 
 
@@ -69,6 +69,7 @@ productManager.addProduct('jabon', 'jabon de glicerina', 450, null, "JG1", 400);
 productManager.addProduct('crema', 'crema para manos', 500, null, "CM1", 1300);
 productManager.addProduct('cepillo de dientes', 'cuidado bucal', 250, null, "CM1", 100); //codigo repetido
 
-productManager.getProductByID(6)
-    .then((result => console.log("Se ha encontrado un producto con el id " + result.id + ": ",result)))
-    .catch((e) => console.log(e))
+console.log(productManager.getProductByID(2));
+console.log(productManager.getProductByID(3));
+
+
