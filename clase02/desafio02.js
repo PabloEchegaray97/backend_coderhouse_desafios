@@ -71,5 +71,5 @@ productManager.addProduct('cepillo de dientes', 'cuidado bucal', 250, null, "CM1
 
 console.log(productManager.getProductByID(2));
 console.log(productManager.getProductByID(3));
-
+console.log('Todos los productos: ', productManager.getProducts());
 
