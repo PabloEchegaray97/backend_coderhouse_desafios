@@ -58,7 +58,7 @@ try {
 
 // then catch 
 sumar(12,35)
-    .then(result => console.log(result))
+    .then(result => console.log("Se utilizó",sumar.name, result))
     .catch(e => console.log(e));
 restar(0,-2)
     .then(result => console.log(result))
@@ -71,3 +71,15 @@ dividir(2,4)
     .catch(e => console.log(e));
 
 // restar se ejecuta al ultimo al parecer
+
+// con async await 
+// se resuelve despues de dividir pero antes de restar porque esta estaria dando error 
+const funcCalculadora = async () => {
+    try {
+        console.log(await sumar(2,3));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+funcCalculadora()
