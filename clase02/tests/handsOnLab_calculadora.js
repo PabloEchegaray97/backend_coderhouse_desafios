@@ -55,3 +55,19 @@ try {
 } catch (e) {
     console.log(e);
 }
+
+// then catch 
+sumar(12,35)
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+restar(0,-2)
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+multiplicar(4,5)
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+dividir(2,4)
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+
+// restar se ejecuta al ultimo al parecer
