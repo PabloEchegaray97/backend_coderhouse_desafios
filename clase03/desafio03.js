@@ -31,13 +31,25 @@ class ProductManager {
     };
 
     addProduct = async (title, description, price, thumbnail, code, stock) => {
+        let flag = false;
         try {
-            const newProduct = { id: await this.getNextID(), title, description, price, thumbnail, code, stock }
             const productsList = await this.getProduct();
-            productsList.push(newProduct);
-            await fs.promises.writeFile(this.path, JSON.stringify(productsList));
-        } catch (error) {
-            console.log('Error al agregar el producto:', error);
+            const newProduct = { id: await this.getNextID(), title, description, price, thumbnail, code, stock }
+            productsList.forEach(element => {
+                if (element.code === newProduct.code) {
+                    flag = true
+                }
+            })
+            if (flag == false) {
+                productsList.push(newProduct);
+                await fs.promises.writeFile(this.path, JSON.stringify(productsList));
+                console.log("Se ha agregado el producto: " + newProduct.title + ", ID: " + newProduct.id);
+            } else {
+            console.log('El codigo del producto ingresado ya existe, por favor ingresa otro ');
+            }    
+
+        } catch (e) {
+            console.log(e);
         }
 
     };
@@ -48,7 +60,6 @@ class ProductManager {
             const dataObj = JSON.parse(data);
             return dataObj
         } catch (error) {
-            console.log('No hay productos en la lista');
             return [];
         }
     };
@@ -114,7 +125,7 @@ async function run() {
     await productManager.updateProduct(2, { title: 'Nuevo título', price: 1000, id: '123ABC' });
     console.log(await productManager.getProduct());
     await productManager.deleteProduct(1);
-    await productManager.addProduct('talco', 'talco para pies', 500, null, "TP1", 650);
+    await productManager.addProduct('talco', 'talco para pies', 500, null, "CP2", 650);
     console.log(await productManager.getProduct());
 };
 run();
