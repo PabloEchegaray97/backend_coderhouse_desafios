@@ -1,6 +1,12 @@
 import { promises } from 'fs';
 import express from 'express';
 
+/*
+rutas:
+http://127.0.0.1:8080/?limit=3
+http://127.0.0.1:8080/
+http://127.0.0.1:8080/2
+*/
 const app = express();
 
 app.get('/', async (req, res) => {
@@ -35,12 +41,12 @@ app.get('/:pid', async (req, res) => {
             return res.send(productFiltered);
         }
     } catch (error) {
-        return res.status(500).send({ error: error});
+        return res.status(400).send({ error: error});
     }
 });
 
 app.listen(8080, () => {
-    console.log('Corriendo en el puerto 8080');
+    console.log('Corriendo en el puerto 8080\nhttp://127.0.0.1:8080/');
 });
 
 class ProductManager {
