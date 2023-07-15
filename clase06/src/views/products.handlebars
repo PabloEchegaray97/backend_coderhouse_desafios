@@ -1,28 +1,21 @@
-<div class="title">
-    <h2>Products</h2>
-    <span>
-        <a href="/form-products">Crear Productos</a>
-    </span>
-</div>
-
-
-<hr>
-
-<table class="custom-table">
-    <thead>
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Price</td>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each products}}
+<h2>Products</h2>
+<div class="table-container">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
             <tr>
                 <td>{{this.id}}</td>
                 <td>{{this.name}}</td>
                 <td>{{this.price}}</td>
             </tr>
-        {{/each}}
-    </tbody>
-</table>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

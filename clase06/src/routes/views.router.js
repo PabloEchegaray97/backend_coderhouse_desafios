@@ -25,7 +25,6 @@ router.get('/form-products', async (req, res) => {
 router.post('/form-products', async (req, res) => {
     const data = req.body
     const result = await productManager.create(data)
-
     res.redirect('/products')
 })
 

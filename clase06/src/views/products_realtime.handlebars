@@ -1,31 +1,30 @@
 <h2>Products - Real Time</h2>
-
 <form id='myForm'>
     Name: <input type="text" name="name">
     Price: <input type="number" name="price">
     <button type="submit">Enviar</button>
 </form>
-
-
-
-<table class="custom-table">
-    <thead>
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Price</td>
-        </tr>
-    </thead>
-    <tbody id = "tbody">
-        {{#each products}}
+<div class="table-container">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            {{#each products}}
             <tr>
                 <td>{{this.id}}</td>
                 <td>{{this.name}}</td>
                 <td>{{this.price}}</td>
             </tr>
-        {{/each}}
-    </tbody>
-</table>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
@@ -44,7 +43,7 @@
             const tbody = document.getElementById('tbody')
             let html = '';
             products.forEach(product => {
-                html+=`
+                html += `
                         <tr>
                         <td>${product.id}</td>
                         <td>${product.name}</td>
