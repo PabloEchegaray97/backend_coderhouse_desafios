@@ -1,19 +1,24 @@
 import FileManager from "./file.manager.js";
-
+import ErrorObject from "../error.js";
 export default class ProductManager extends FileManager {
-
     constructor() {
         super('./products.json')
     }
 
     create = async(data) => {
-        const result = await this.set(data)
-        return result
+        try {
+            return await this.set(data)
+        } catch (error) {
+            throw new ErrorObject('Error setting data', 500)
+        }
     }
 
     list = async () => {
-        const result = await this.get()
-        return result
+        try {
+            return await this.get()
+        } catch (error) {
+            throw new ErrorObject('Error getting data:', 500);            
+        }
     }
-
+    
 }
